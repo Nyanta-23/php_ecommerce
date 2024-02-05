@@ -1,11 +1,11 @@
 <?php
 
-class Home extends TemplateController
+class Home extends Controller
 {
   public function index()
   {
     $data['title'] = "Dashboard";
 
-    $this->templates('Home/index', $data);
+    $this->view('Home/index', $data);
   }
 }

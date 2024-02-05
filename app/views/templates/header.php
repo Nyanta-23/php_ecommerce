@@ -29,7 +29,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link py-3 border-bottom">
+              <a href="<?= BASE_URL; ?>admin" class="nav-link py-3 border-bottom">
                 <i class="bi bi-box-seam-fill"></i>
               </a>
             </li>

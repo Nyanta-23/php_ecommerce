@@ -11,7 +11,7 @@
       </section>
 
 
-      <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>
+      <script src="<?= BASE_URL; ?>js/bootstrap.js"></script>
       </body>
 
       </html>
