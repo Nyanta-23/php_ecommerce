@@ -25,24 +25,19 @@ class App
 
       // $_SESSION['admin_account'] = false;
 
-      try {
-        //code...
-        $pathUri = explode('/', $_SERVER['PHP_SELF']);
-        array_shift($pathUri);
-        array_pop($pathUri);
 
-        $uri = implode("/", $pathUri);
 
-        if ($uri != '/Admin/SignIn') {
-          header('Location: http://' . $_SERVER['HTTP_HOST'] . '/' . $uri . '/Admin/SignIn');
-          error_reporting();
-          exit();
-          die();
-        }
+      $pathUri = explode('/', $_SERVER['PHP_SELF']);
+      array_shift($pathUri);
+      array_pop($pathUri);
 
-      } catch (Exception $e) {
-        var_dump($e);
-        echo "Caught Exception : " . $e->getMessage();
+      $uri = implode("/", $pathUri);
+
+      if ($uri != '/Admin/SignIn') {
+        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/' . $uri . '/Admin/SignIn');
+        error_reporting();
+        exit();
+        die();
       }
     }
 
