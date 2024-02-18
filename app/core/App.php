@@ -10,42 +10,11 @@ class App
 
   public function __construct()
   {
+    Session::startSession();
+
     $url = $this->parseURL();
 
 
-    // // redirect when not login
-    // Auth::startSession();
-    session_start();
-
-    // $_SESSION['admin_account'] = "test";
-    // var_dump($_SESSION['admin_account']);
-
-    // if (isset($_SESSION['admin_account'])) {
-    if (true) {
-
-      // $_SESSION['admin_account'] = false;
-
-
-
-      $pathUri = explode('/', $_SERVER['PHP_SELF']);
-      array_shift($pathUri);
-      array_pop($pathUri);
-
-      $uri = implode("/", $pathUri);
-
-      if ($uri != '/Admin/SignIn') {
-        header('Location: http://' . $_SERVER['HTTP_HOST'] . '/' . $uri . '/Admin/SignIn');
-        error_reporting();
-        exit();
-        die();
-      }
-    }
-
-    // header('Location: http://' . $_SERVER['HTTP_HOST'] . '/' . $uri . '/Admin/SignIn');
-    // die();
-    // var_dump($_SERVER);
-
-    // controller
     if (isset($url[0]) && file_exists("../app/controllers/$url[0].php")) {
       $this->controller = $url[0];
       unset($url[0]);

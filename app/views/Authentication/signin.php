@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= $data['title']; ?></title>
+  <title>Sign In</title>
 
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap.css">
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/style.css">
@@ -14,21 +14,22 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
   <main class="form-signin w-50 mt-5 m-auto">
-    <form>
+    <form action="<?= BASE_URL; ?>Admin/SignIn" method="post">
       <h1>Welcome Back!</h1>
       <h1 class="h3 mb-3 fw-normal">Please sign in, for continue to the eccomerce</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
         <label for="floatingInput">Email address</label>
       </div>
+
       <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="on" name="password">
         <label for="floatingPassword">Password</label>
       </div>
 
       <div class="form-check text-start my-3">
-        <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
+        <input class="form-check-input" type="checkbox" value="remember-me" name="remember" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Remember me
         </label>
@@ -43,10 +44,7 @@
   </main>
 
 
-
-
-
-
+  <script src="<?= BASE_URL; ?>js/jquery.js"></script>
   <script src="<?= BASE_URL; ?>js/bootstrap.js"></script>
 </body>
 
