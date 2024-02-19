@@ -20,12 +20,18 @@
 
       <div class="form-floating">
         <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-        <label for="floatingInput">Email address</label>
+        <label for="floatingInput">Email Address</label>
       </div>
 
       <div class="form-floating">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="on" name="password">
         <label for="floatingPassword">Password</label>
+      </div>
+
+      <div class="row">
+        <div class="col mt-3">
+          <?php Flasher::authMessage("error_input") ?>
+        </div>
       </div>
 
       <div class="form-check text-start my-3">

@@ -1,6 +1,6 @@
 <?php
 
-class Admin_Model extends Auth
+class Admin_Model
 {
   private
     $table = "admins",
@@ -11,10 +11,11 @@ class Admin_Model extends Auth
     $this->db = new Database();
   }
 
-  public function getAccountAdmin($username)
+  public function getAccount($data)
   {
-    $query = "SELECT * FROM $this->table WHERE username = '$username'";
+    $query = "SELECT * FROM $this->table WHERE username = :username";
     $this->db->query($query);
+    $this->db->bind("username", $data['username']);
 
     $this->db->execute();
 
@@ -44,10 +45,37 @@ class Admin_Model extends Auth
     $this->db->query($query);
     $this->db->bind("email", $data['email']);
 
-    return $this->db->fetch();
+    $account = $this->db->fetch();
+
+    if ($account) {
+      if (password_verify(htmlspecialchars($data['password']), $account['password'])) {
+        return $account;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
   }
 
   public function logOut()
   {
+  }
+
+  public function getAccountByEmail($email)
+  {
+    $query = "SELECT * FROM admins WHERE email = :email";
+
+    $this->db->query($query);
+
+    $this->db->bind("email", $email);
+
+    $this->db->execute();
+
+    if ($this->db->rowCount() > 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

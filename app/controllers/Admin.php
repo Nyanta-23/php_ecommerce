@@ -3,42 +3,61 @@
 class Admin extends Controller
 {
 
+  private
+    $modelName = "Admin_Model";
+
   public function SignIn()
   {
+    Auth::kickFromAuth();
+
     $this->templatesViews("Authentication/signin");
 
-    if (Server_Response::is_post_request()) {
-      
-      $admin = $this->model("Admin_Model")->signIn($_POST);
+    if ($_POST) {
 
-      // var_dump($_POST['password']);
+      if (empty($_POST['email']) || empty($_POST['password'])) {
 
-      var_dump(password_verify( $_POST['password'], $admin['password'],));
+        Flasher::setFlash("error_input", "Your email or password is empty!", "danger");
+        exit;
+      } else {
 
-      // if($admin['password'], $_POST['password']) {
+        $account = $this->model($this->modelName)->signIn($_POST);
 
-      // }
+        if ($account) {
 
+          $_SESSION['Admin_Id'] = $account['id_admin'];
+
+          if (isset($_SESSION['rememmber'])) {
+            setcookie("number", $account['id_admin'] + rand(), time() + 60);
+            setcookie("key", hash('sha256', $account['username']), time() + 60);
+          }
+
+          Redirect::to("Home");
+          exit;
+        } else {
+          Flasher::setFlash("error_input", "Your email or password is wrong!", "danger");
+          exit;
+        }
+      }
     }
   }
 
   public function SignUp()
   {
+    Auth::kickFromAuth();
+
     $this->templatesViews("Authentication/signup");
 
     $accountError = "account_error";
 
-    if (Server_Response::is_post_request() && $_POST) {
+    if ($_POST) {
 
-      if ($this->model("Admin_Model")->getAccountAdmin($_POST['username'])) {
-        Flasher::setFlash($accountError, "The account with username " . $_POST['username'] . " is existed!", "danger");
-        Redirect::to("Admin/SignUp");
+      if ($this->model($this->modelName)->getAccount($_POST['username'])) {
+        Flasher::setFlash($accountError, "The account with username " . $_POST['username'] . " has used!", "danger");
         exit;
       } else {
         if ($_POST['password'] != $_POST['confirmPassword']) {
 
           Flasher::setFlash($accountError, "Your password is not match!", "danger");
-          Redirect::to("Admin/SignUp");
           exit;
         } else {
 
@@ -51,9 +70,8 @@ class Admin extends Controller
             "password" => htmlspecialchars($_POST['password'])
           );
 
-          if ($this->model("Admin_Model")->signUp($filterData) > 0) {
+          if ($this->model($this->modelName)->signUp($filterData) > 0) {
             Flasher::setFlash("account_created", "Your account has created!");
-            Redirect::to("Admin/SignUp");
             exit;
           }
         }

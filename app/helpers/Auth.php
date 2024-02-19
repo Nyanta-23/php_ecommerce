@@ -2,17 +2,17 @@
 
 class Auth
 {
-
-  public static function adminAuth() {
-    if(isset($_SESSION['admin_id'])) {
-      return true;
-    } else {
+  public static function isLogin()
+  {
+    if (!isset($_SESSION['Admin_Id'])) {
       Redirect::to("Admin/SignIn");
     }
   }
 
-  public static function adminGuest() {
-
+  public static function kickFromAuth()
+  {
+    if (isset($_SESSION['Admin_Id'])) {
+      Redirect::to("Home");
+    }
   }
-
 }

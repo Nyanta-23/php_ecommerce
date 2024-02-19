@@ -11,9 +11,4 @@ class Session
   {
     session_destroy();
   }
-
-  public static function getSession($session) {
-    if(!isset($session)) return true;
-  }
-
 }

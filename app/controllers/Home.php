@@ -4,8 +4,7 @@ class Home extends Controller
 {
   public function index()
   {
-
-    Auth::adminAuth();
+    Auth::isLogin();
 
     $data['title'] = "Dashboard";
 
