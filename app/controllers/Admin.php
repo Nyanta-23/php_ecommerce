@@ -20,8 +20,7 @@ class Admin extends Controller
         $_SESSION['Admin_Id'] = true;
       }
     }
-
-
+    
     Auth::kickFromAuth();
 
     $this->templatesViews("Authentication/signin");
@@ -40,8 +39,8 @@ class Admin extends Controller
           $_SESSION['Admin_Id'] = true;
 
           if (isset($_POST['remember'])) {
-            setcookie("number", $account['id_admin'], time() + 60);
-            setcookie("key", hash('sha256', $account['username']), time() + 60);
+            setcookie("number", $account['id_admin'], time() + 60, "/");
+            setcookie("key", hash('sha256', $account['username']), time() + 60, "/");
           }
 
           Redirect::to("Home");
