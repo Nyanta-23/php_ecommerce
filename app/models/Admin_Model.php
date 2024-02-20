@@ -11,7 +11,7 @@ class Admin_Model
     $this->db = new Database();
   }
 
-  public function getAccount($data)
+  public function getAccountByUsername($data)
   {
     $query = "SELECT * FROM $this->table WHERE username = :username";
     $this->db->query($query);
@@ -62,18 +62,18 @@ class Admin_Model
   {
   }
 
-  public function getAccountByEmail($email)
+  public function getAccountById($id)
   {
-    $query = "SELECT * FROM admins WHERE email = :email";
+    $query = "SELECT * FROM admins WHERE id_admin = :id";
 
     $this->db->query($query);
+    
+    $this->db->bind("id", $id);
+    
+    $account = $this->db->fetch(); 
 
-    $this->db->bind("email", $email);
-
-    $this->db->execute();
-
-    if ($this->db->rowCount() > 0) {
-      return true;
+    if($this->db->rowCount() > 0) {
+      return $account;
     } else {
       return false;
     }

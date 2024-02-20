@@ -8,12 +8,25 @@ class Admin extends Controller
 
   public function SignIn()
   {
+
+    if (isset($_COOKIE['number']) && isset($_COOKIE['key'])) {
+
+      $id = $_COOKIE['number'];
+      $key = $_COOKIE['key'];
+
+      $result = $this->model($this->modelName)->getAccountById($id);
+
+      if ($key == hash('sha256', $result['username'])) {
+        $_SESSION['Admin_Id'] = true;
+      }
+    }
+
+
     Auth::kickFromAuth();
 
     $this->templatesViews("Authentication/signin");
 
     if ($_POST) {
-
       if (empty($_POST['email']) || empty($_POST['password'])) {
 
         Flasher::setFlash("error_input", "Your email or password is empty!", "danger");
@@ -24,10 +37,10 @@ class Admin extends Controller
 
         if ($account) {
 
-          $_SESSION['Admin_Id'] = $account['id_admin'];
+          $_SESSION['Admin_Id'] = true;
 
-          if (isset($_SESSION['rememmber'])) {
-            setcookie("number", $account['id_admin'] + rand(), time() + 60);
+          if (isset($_POST['remember'])) {
+            setcookie("number", $account['id_admin'], time() + 60);
             setcookie("key", hash('sha256', $account['username']), time() + 60);
           }
 
@@ -51,7 +64,7 @@ class Admin extends Controller
 
     if ($_POST) {
 
-      if ($this->model($this->modelName)->getAccount($_POST['username'])) {
+      if ($this->model($this->modelName)->getAccountByUsername($_POST['username'])) {
         Flasher::setFlash($accountError, "The account with username " . $_POST['username'] . " has used!", "danger");
         exit;
       } else {

@@ -6,6 +6,7 @@ class Auth
   {
     if (!isset($_SESSION['Admin_Id'])) {
       Redirect::to("Admin/SignIn");
+      exit;
     }
   }
 
@@ -13,6 +14,7 @@ class Auth
   {
     if (isset($_SESSION['Admin_Id'])) {
       Redirect::to("Home");
+      exit;
     }
   }
 }

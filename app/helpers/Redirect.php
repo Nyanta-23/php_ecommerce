@@ -4,7 +4,6 @@ class Redirect
 {
 
   public static function to($location) {
-    // ob_start();
     header("Location: " . BASE_URL . "$location");
   }
 

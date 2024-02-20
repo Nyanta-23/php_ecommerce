@@ -43,6 +43,11 @@
                 <i class="bi bi-list-check"></i>
               </a>
             </li>
+            <li>
+              <a href="#" class="nav-link py-3 border-bottom">
+                <i class="bi bi-door-open"></i>
+              </a>
+            </li>
           </ul>
         </div>
       </section>
