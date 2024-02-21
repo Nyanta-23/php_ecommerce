@@ -4,7 +4,7 @@ class Auth
 {
   public static function isLogin()
   {
-    if (!isset($_SESSION['Admin_Id'])) {
+    if (!isset($_SESSION['auth'])) {
       Redirect::to("Admin/SignIn");
       exit;
     }
@@ -12,7 +12,7 @@ class Auth
 
   public static function kickFromAuth()
   {
-    if (isset($_SESSION['Admin_Id'])) {
+    if (isset($_SESSION['auth'])) {
       Redirect::to("Home");
       exit;
     }

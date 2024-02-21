@@ -16,11 +16,13 @@ class Admin extends Controller
 
       $result = $this->model($this->modelName)->getAccountById($id);
 
-      if ($key == hash('sha256', $result['username'])) {
-        $_SESSION['Admin_Id'] = true;
+      $cookie = $result['username'] . $result['id_admin'] ;
+
+      if ($key == hash('sha256', $cookie)) {
+        $_SESSION['auth'] = $result['id_admin'];
       }
     }
-    
+
     Auth::kickFromAuth();
 
     $this->templatesViews("Authentication/signin");
@@ -36,11 +38,14 @@ class Admin extends Controller
 
         if ($account) {
 
-          $_SESSION['Admin_Id'] = true;
+          $_SESSION['auth'] = $account['id_admin'];
 
           if (isset($_POST['remember'])) {
+
+            $cookie = $account['username'] . $account['id_admin'] ;
+
             setcookie("number", $account['id_admin'], time() + 60, "/");
-            setcookie("key", hash('sha256', $account['username']), time() + 60, "/");
+            setcookie("key", hash('sha256', $cookie), time() + 60, "/");
           }
 
           Redirect::to("Home");
@@ -81,12 +86,21 @@ class Admin extends Controller
             "email" => htmlspecialchars($_POST['email']),
             "password" => htmlspecialchars($_POST['password'])
           );
-
+          
           if ($this->model($this->modelName)->signUp($filterData) > 0) {
             Flasher::setFlash("account_created", "Your account has created!");
             exit;
           }
         }
+      }
+    }
+  }
+
+  public function SignOut() {
+    if($_POST) {
+      if(isset($_POST['signout'])) {
+        Session::stopSession();
+        Redirect::to("Home");
       }
     }
   }

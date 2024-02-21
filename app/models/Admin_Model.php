@@ -40,7 +40,7 @@ class Admin_Model
 
   public function signIn($data)
   {
-    $query = "SELECT * FROM admins WHERE email = :email";
+    $query = "SELECT * FROM $this->table WHERE email = :email";
 
     $this->db->query($query);
     $this->db->bind("email", $data['email']);
@@ -64,15 +64,15 @@ class Admin_Model
 
   public function getAccountById($id)
   {
-    $query = "SELECT * FROM admins WHERE id_admin = :id";
+    $query = "SELECT * FROM $this->table WHERE id_admin = :id";
 
     $this->db->query($query);
-    
-    $this->db->bind("id", $id);
-    
-    $account = $this->db->fetch(); 
 
-    if($this->db->rowCount() > 0) {
+    $this->db->bind("id", $id);
+
+    $account = $this->db->fetch();
+
+    if ($this->db->rowCount() > 0) {
       return $account;
     } else {
       return false;
