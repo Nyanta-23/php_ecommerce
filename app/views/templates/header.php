@@ -31,7 +31,18 @@ $split_link = explode("/", $actual_link)[5];
       </button>
 
       <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+        <ul class="d-flex navbar-nav">
+          <li class="border-end border-1 me-2 px-3">
+            <button class="btn text-white fs-3 px-4">
+              <i class="bi bi-cart4"></i>
+            </button>
+          </li>
+          <li class="d-flex gap-2 align-self-center h-100 ms-2">
+            <button type="button" class="btn btn-outline-light fw-bold btn-md px-4">Masuk</button>
+            <button type="button" class="btn btn-light btn-md px-4 text-primary fw-bold">Daftar</button>
+          </li>
+        </ul>
+        <!-- <ul class="navbar-nav">
           <li class="nav-item">
             <a class="text-white nav-link active" aria-current="page" href="#">Home</a>
           </li>
@@ -45,13 +56,13 @@ $split_link = explode("/", $actual_link)[5];
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-        </ul>
+        </ul> -->
       </div>
 
     </div>
   </nav>
 
-  <section>
+  <!-- <section>
     <div class="px-4 py-5 mt-4 mb-5 text-center border mx-5 shadow rounded-3">
       <h1 class="display-5 fw-bold text-body-emphasis">Preprocessor Shop</h1>
       <div class="col-lg-6 mx-auto">
@@ -62,7 +73,7 @@ $split_link = explode("/", $actual_link)[5];
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
 
   <section>
