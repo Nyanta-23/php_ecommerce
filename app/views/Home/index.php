@@ -4,13 +4,13 @@
     <div class="row">
       <div class="col d-flex justify-content-start gap-3 ">
 
-        <?php foreach ($data['card_data'] as $card) :
+        <!-- <?php foreach ($data['card_data'] as $card) :
 
           $getArrayName = array_key_first($card);
           $getCardAttachment = $card[$getArrayName]['card_attachment'];
-        ?>
+        ?> -->
 
-          <div class="card w-25 d-flex bg-<?= $getCardAttachment['color'] ?> text-white">
+          <!-- <div class="card w-25 d-flex bg-<?= $getCardAttachment['color'] ?> text-white">
             <div class="d-flex align-items-center">
               <div class="card-body">
                 <h5 class="card-title fs-2"><?= empty($card[$getArrayName]['data']) ? 0 : count($card[$getArrayName]['data']) ?></h5>
@@ -21,7 +21,7 @@
               </div>
             </div>
           </div>
-        <?php endforeach; ?>
+        <?php endforeach; ?> -->
 
       </div>
     </div>

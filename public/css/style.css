@@ -1,6 +1,0 @@
-#modal {
-  transition-property: width;
-  transition-duration: 2s;
-  transition-timing-function: ease-in-out;
-  transition-delay: 1s;
-}

@@ -11,87 +11,59 @@ $split_link = explode("/", $actual_link)[5];
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?= empty($data['title']) ? "" : $data['title']; ?></title>
+  <title>P-Shop | <?= empty($data['title']) ? "" : $data['title']; ?></title>
 
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap.css">
+  <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/style.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 </head>
 
-<body class="overflow-x-hidden">
+<body>
 
-  <!-- Modal -->
-  <form action="<?= BASE_URL; ?>Admin/SignOut" method="post">
-    <input name="signout" value="true" hidden />
-    <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Sign Out</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body text-center">
-            <i class="bi bi-question-circle-fill text-warning" style="font-size: 5em;"></i>
-            <h2>Are you want to SignOut?</h2>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary px-5" data-bs-dismiss="modal">No</button>
-            <button type="submit" class="btn btn-primary px-5">Yes</button>
-          </div>
+  <nav class="navbar navbar-expand-lg bg-primary px-5">
+    <div class="container-fluid">
+      <a class="navbar-brand fs-3 text-white" href="#">Preprocessor Shop</a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="text-white nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="text-white nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown link
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <section>
+    <div class="px-4 py-5 mt-4 mb-5 text-center border mx-5 shadow rounded-3">
+      <h1 class="display-5 fw-bold text-body-emphasis">Preprocessor Shop</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">P-Shop is just web eccommerce, this just for training skill code php. I hope this application can help to be able to get a bright future for this maker.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Primary button</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4">Secondary</button>
         </div>
       </div>
     </div>
-  </form>
+  </section>
 
 
-  <section class="row">
-
-    <section class="col-1 p-0">
-      <section id="sidebar">
-        <div class="d-flex flex-column flex-shrink-0 bg-light position-fixed" style="height: 100vh; width: 120px;">
-          <a href="<?= BASE_URL; ?>" class="d-block p-3 link-dark text-decoration-none text-center" title="" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
-            <span class="text-capitalize fw-bold">Ecom</span>
-          </a>
-          <ul class="nav nav-pills nav-flush flex-column mb-auto text-center fs-3 ">
-
-            <li class="nav-item">
-              <a href="<?= BASE_URL; ?>" class="nav-link py-3 border-bottom <?= ($split_link == "" || $split_link == "Home" || $split_link == "home") ? "active" : ""; ?>">
-                <i class="bi bi-house-door-fill"></i>
-              </a>
-            </li>
-            <li>
-              <!-- Products -->
-              <a href="<?= BASE_URL; ?>products" class="nav-link py-3 border-bottom <?= ($split_link == "products") ? "active" : ""; ?>">
-                <i class="bi bi-box-seam-fill"></i>
-              </a>
-            </li>
-            <li>
-              <!-- Category -->
-              <a href="<?= BASE_URL; ?>categories" class="nav-link py-3 border-bottom <?= ($split_link == "categories") ? "active" : ""; ?>">
-                <i class="bi bi-tags"></i>
-              </a>
-            </li>
-            <li>
-              <!-- Order & Completed Order -->
-              <a href="<?= BASE_URL; ?>orders" class="nav-link py-3 border-bottom <?= ($split_link == "orders") ? "active" : ""; ?>">
-                <i class="bi bi-list-check"></i>
-              </a>
-            </li>
-
-            <li>
-              <a type="button" class="nav-link py-3 border-bottom link-danger" data-bs-toggle="modal" data-bs-target="#logout">
-                <i class="bi bi-door-open"></i>
-              </a>
-            </li>
-
-          </ul>
-        </div>
-      </section>
-    </section>
-
-
-
-
-    <section class="col-10 px-0">
-      <section id="main" class="ms-4" style="width: 100vw;">
+  <section>
+    <section id="main" class="ms-4">

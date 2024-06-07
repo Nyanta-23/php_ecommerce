@@ -11,8 +11,7 @@ class Controller
   public function view($view, $data = [])
   {
     $this->templatesViews("templates/header", $data);
-    $this->templatesViews("templates/navbar", $data);
-    $this->templatesViews($view, $data);
+    // $this->templatesViews($view, $data);
     $this->templatesViews("templates/footer", $data);
   }
 
