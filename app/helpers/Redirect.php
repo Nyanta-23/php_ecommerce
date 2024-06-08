@@ -11,4 +11,9 @@ class Redirect
     header("Location: " . $_SERVER['HTTP_REFERER']);
   }
 
+  public static function refresh() {
+    header("Refresh:0");
+    exit;
+  }
+
 }

@@ -14,13 +14,13 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 
   <main class="form-signin w-50 mt-5 m-auto">
-    <form action="<?= BASE_URL; ?>Admin/SignIn" method="post">
+    <form action="<?= BASE_URL; ?>/User/SignIn" method="post">
       <h1>Welcome Back!</h1>
       <h1 class="h3 mb-3 fw-normal">Please sign in, for continue to the eccomerce</h1>
 
       <div class="form-floating">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-        <label for="floatingInput">Email Address</label>
+        <input type="text" class="form-control" id="floatingInput" placeholder="nameexample123" name="username">
+        <label for="floatingInput">Username</label>
       </div>
 
       <div class="form-floating">
@@ -42,7 +42,7 @@
       </div>
       <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
       <div class="text-center mt-3">
-        <span>Dont have account? <a href="<?= BASE_URL; ?>Admin/SignUp">SignUp</a></span>
+        <span>Dont have account? <a href="<?= BASE_URL; ?>/User/SignUp">SignUp</a></span>
       </div>
 
       <p class="mt-5 mb-3 text-body-secondary">© All right reserved by Nyanta</p>
@@ -50,8 +50,8 @@
   </main>
 
 
-  <script src="<?= BASE_URL; ?>js/jquery.js"></script>
-  <script src="<?= BASE_URL; ?>js/bootstrap.js"></script>
+  <script src="<?= BASE_URL; ?>/js/jquery.js"></script>
+  <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>
 </body>
 
 </html>

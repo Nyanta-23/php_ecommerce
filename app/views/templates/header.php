@@ -38,8 +38,8 @@ $split_link = explode("/", $actual_link)[5];
             </button>
           </li>
           <li class="d-flex gap-2 align-self-center h-100 ms-2">
-            <button type="button" class="btn btn-outline-light fw-bold btn-md px-4">Masuk</button>
-            <button type="button" class="btn btn-light btn-md px-4 text-primary fw-bold">Daftar</button>
+            <a href="<?= BASE_URL; ?>/User/SignIn" type="button" class="btn btn-outline-light fw-bold btn-md px-4">Masuk</a>
+            <a href="<?= BASE_URL; ?>/User/SignUp" type="button" class="btn btn-light btn-md px-4 text-primary fw-bold">Daftar</a>
           </li>
         </ul>
         <!-- <ul class="navbar-nav">

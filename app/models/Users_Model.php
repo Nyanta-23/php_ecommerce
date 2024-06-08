@@ -1,9 +1,9 @@
 <?php
 
-class Admin_Model
+class Users_Model
 {
   private
-    $table = "admins",
+    $table = "users",
     $db;
 
   public function __construct()
@@ -11,26 +11,16 @@ class Admin_Model
     $this->db = new Database();
   }
 
-  public function getAccountByUsername($data)
-  {
-    $query = "SELECT * FROM $this->table WHERE username = :username";
-    $this->db->query($query);
-    $this->db->bind("username", $data['username']);
-
-    $this->db->execute();
-
-    return $this->db->fetch();
-  }
-
   public function signUp($data)
   {
-    $query = "INSERT INTO $this->table VALUES ('', :username, :password, :first_name, :last_name, :email, '')";
+    $query = "INSERT INTO $this->table (username, password, first_name, last_name, telephone, email) VALUES (:username, :password, :first_name, :last_name, :telephone, :email)";
 
     $this->db->query($query);
     $this->db->bind('username', $data['username']);
     $this->db->bind('password', password_hash($data['password'], PASSWORD_DEFAULT));
     $this->db->bind('first_name', $data['first_name']);
     $this->db->bind('last_name', $data['last_name']);
+    $this->db->bind('telephone', $data['telephone']);
     $this->db->bind('email', $data['email']);
 
     $this->db->execute();
@@ -38,36 +28,42 @@ class Admin_Model
     return $this->db->rowCount();
   }
 
+  public function getAccountByUsername($username)
+  {
+
+    $query = "SELECT * FROM $this->table WHERE username = :username";
+    
+    $this->db->query($query);
+    $this->db->bind("username", $username);
+
+    $this->db->execute();
+
+    return $this->db->fetch();
+  }
+
   public function signIn($data)
   {
-    $query = "SELECT * FROM $this->table WHERE email = :email";
+    $query = "SELECT * FROM $this->table WHERE username = :username";
 
     $this->db->query($query);
-    $this->db->bind("email", $data['email']);
+    $this->db->bind("username", $data["username"]);
 
     $account = $this->db->fetch();
 
     if ($account) {
-      if (password_verify(htmlspecialchars($data['password']), $account['password'])) {
+      if (password_verify($data["password"], $account["password"])) {
         return $account;
       } else {
         return false;
       }
-    } else {
-      return false;
     }
-  }
-
-  public function logOut()
-  {
   }
 
   public function getAccountById($id)
   {
-    $query = "SELECT * FROM $this->table WHERE id_admin = :id";
+    $query = "SELECT * FROM $this->table WHERE id = :id";
 
     $this->db->query($query);
-
     $this->db->bind("id", $id);
 
     $account = $this->db->fetch();
@@ -78,4 +74,6 @@ class Admin_Model
       return false;
     }
   }
+
+  
 }
