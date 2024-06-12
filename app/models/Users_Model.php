@@ -32,7 +32,7 @@ class Users_Model
   {
 
     $query = "SELECT * FROM $this->table WHERE username = :username";
-    
+
     $this->db->query($query);
     $this->db->bind("username", $username);
 
@@ -64,7 +64,7 @@ class Users_Model
     $query = "SELECT * FROM $this->table WHERE id = :id";
 
     $this->db->query($query);
-    $this->db->bind("id", $id);
+    $this->db->bind("id", isset($id) ? $id : false);
 
     $account = $this->db->fetch();
 
@@ -75,5 +75,9 @@ class Users_Model
     }
   }
 
-  
+  public static function getAccountByIdStatic($id)
+  {
+    $instance = new self();
+    return $instance->getAccountById($id);
+  }
 }

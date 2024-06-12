@@ -2,15 +2,13 @@
 
 class Home extends Controller
 {
+  private $modelUser = "Users_Model";
 
   public function index()
   {
-
-    $model = $this->model("Home_Model");
+    // $data["user"] = $this->model($this->modelUser)->getAccountById($_SESSION["user"]);
 
     // // Auth::isLogin();
-
-    $data['title'] = "Dashboard";
 
     // $idAdmin = $_SESSION['auth'];
 
@@ -24,6 +22,6 @@ class Home extends Controller
     //   $model->setData("confirmed", $confirmed, "check-square-fill", "success"),
     // ];
 
-    $this->view('Home/index', $data);
+    $this->view('Home/index');
   }
 }

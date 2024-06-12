@@ -1,5 +1,9 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
+
 class User extends Controller
 {
   private $modelName = "Users_Model";
@@ -32,7 +36,7 @@ class User extends Controller
           );
 
           if ($this->model($this->modelName)->signUp($protect) > 0) {
-            Flasher::setFlash("account_created", "Your account has created!");
+            Flasher::setAlert("account_created", "Your account has created!", true);
             exit;
           }
         }
@@ -54,7 +58,7 @@ class User extends Controller
       $cookie = $result["username"] . $result["id"];
 
       if ($key == hash("sha256", $cookie)) {
-        $_SESSION["auth"] = $result["id"];
+        $_SESSION["user"] = $result["id"];
       }
     }
 
@@ -72,7 +76,7 @@ class User extends Controller
         $account = $this->model($this->modelName)->signIn($_POST);
 
         if ($account) {
-          $_SESSION["auth"] = $account["id"];
+          $_SESSION["user"] = $account["id"];
 
           if (isset($_POST["rememmber"])) {
 
@@ -92,12 +96,20 @@ class User extends Controller
     }
   }
 
-  public function SignOut() {
-    if($_POST) {
-      if(isset($_POST["signout"])){
-        Session::stopSession();
-        Redirect::to("/Home");
-      }
+  public function ModalSignOut()
+  {
+    if (isset($_POST["tosignout"])) {
+      Flasher::setAlert("logout", "Are you sure want to logout?");
+      Redirect::to("/Home");
+    }
+  }
+
+  public function SignOut()
+  {
+    if (isset($_POST["signout"])) {
+      Session::stopSession();
+      
+      Redirect::to("/Home");
     }
   }
 }
