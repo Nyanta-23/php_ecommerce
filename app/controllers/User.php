@@ -1,9 +1,4 @@
 <?php
-
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Headers: Content-Type");
-
 class User extends Controller
 {
   private $modelName = "Users_Model";
@@ -108,7 +103,6 @@ class User extends Controller
   {
     if (isset($_POST["signout"])) {
       Session::stopSession();
-      
       Redirect::to("/Home");
     }
   }

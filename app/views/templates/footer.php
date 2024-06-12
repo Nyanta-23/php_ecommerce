@@ -10,10 +10,9 @@
       </section>
 
 
-      <!-- <script src="<?= BASE_URL; ?>/js/propper.js"></script> -->
       <script src="<?= BASE_URL; ?>/js/jquery.js"></script>
+      <script src="<?= BASE_URL; ?>/js/popper.min.js"></script>
       <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>
-      <script src="<?= BASE_URL; ?>/js/bootstrap.bundle.min.js"></script>
       <script src="<?= BASE_URL; ?>/js/script.js"></script>
 
 

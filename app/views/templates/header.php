@@ -38,11 +38,19 @@ $username = $data ? ($data["user"] ? $data["user"]["username"] : false) : false;
           <li class="border-end border-1 me-2 px-3">
 
             <?= isset($_SESSION["user"]) ? "
-            <button class='btn text-white fs-3 px-4'>
+            <button class='btn text-white fs-3 px-4'
+                  data-tooltip='seller'
+                  data-bs-toggle='tooltip' 
+                  data-bs-placement='bottom'
+                  data-bs-title='Ayo jual barangmu!'>
               <i class='bi bi-shop'></i>
             </button>"
               :
-              "<button class='btn text-white fs-3 px-4'>
+              "<button class='btn text-white fs-3 px-4' 
+                  data-tooltip='buyer'
+                  data-bs-toggle='tooltip' 
+                  data-bs-placement='bottom'
+                  data-bs-title='Ayo mulai belanja!'>
               <i class='bi bi-cart4'></i>
             </button>"; ?>
           </li>
@@ -72,7 +80,7 @@ $username = $data ? ($data["user"] ? $data["user"]["username"] : false) : false;
                 <li><a class="dropdown-item" href="#">Keranjang</a></li>
                 <li>
                   <form action="<?= BASE_URL; ?>/User/ModalSignOut" method="post">
-                    <input type="hidden" name="tosignout"/>
+                    <input type="hidden" name="tosignout" />
                     <button type="submit" class="dropdown-item hover-header" href="#">Keluar</button>
                   </form>
                 </li>
