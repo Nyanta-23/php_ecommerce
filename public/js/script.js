@@ -1,14 +1,9 @@
 const baseUrl = "http://localhost:8080/php_ecommerce/public";
 
-$('.datepicker').datepicker();
-
 document.addEventListener("DOMContentLoaded", () => {
 
   showModalLogout();
   showToolTipToBeSeller();
-
-
-
 
 });
 

@@ -1,17 +1,15 @@
-<?php 
+<?php
 
 $user = $data["user"];
 
 ?>
-
-<?= var_dump($data); ?>
 
 <section class="container-fluid my-5 px-5">
   <div class="row">
     <div class="col-6 text-center d-flex justify-content-center">
       <div class="my-1" style="width: 30vw;">
         <div class="card">
-          <img src="..." class="card-img-top" alt="...">
+          <img src="<?= BASE_URL; ?>/images/static/default-image-user.png" class="card-img-top w-75 align-self-center mt-2" alt="...">
           <div class="card-body text-center">
             <a href="#" class="btn btn-primary">Pilih Foto</a>
             <div class="card-body">
@@ -19,7 +17,9 @@ $user = $data["user"];
             </div>
           </div>
         </div>
-        <a href="#" class="btn btn-primary w-100 mt-3">Ganti Password</a>
+        <div class="mt-3">
+          <a href="#" class="btn btn-primary w-100">Ubah Password</a>
+        </div>
       </div>
     </div>
     <div class="col-6">
@@ -29,17 +29,23 @@ $user = $data["user"];
           <tr>
             <th>Nama</th>
             <td><?= $user["first_name"] . " " . $user["last_name"]; ?></td>
-            <td>Otto</td>
+            <td>
+              <a href="#" class="btn btn-primary">Ubah</a>
+            </td>
           </tr>
           <tr>
             <th>Tanggal Lahir</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td><?= $user["birthdate"]; ?></td>
+            <td>
+              <a href="#" class="btn btn-primary">Ubah</a>
+            </td>
           </tr>
           <tr>
             <th>Jenis Kelamin</th>
-            <td>Mark</td>
-            <td>Otto</td>
+            <td class="text-capitalize"><?= $user["gender"]; ?></td>
+            <td>
+              <a href="#" class="btn btn-primary">Ubah</a>
+            </td>
           </tr>
         </table>
       </div>
@@ -49,12 +55,16 @@ $user = $data["user"];
           <tr>
             <th>Email</th>
             <td><?= $user["email"]; ?></td>
-            <td>Otto</td>
+            <td>
+              <a href="#" class="btn btn-primary">Ubah</a>
+            </td>
           </tr>
           <tr>
             <th>Nomor Hp</th>
             <td><?= $user["telephone"]; ?></td>
-            <td>Otto</td>
+            <td>
+              <a href="#" class="btn btn-primary">Ubah</a>
+            </td>
           </tr>
         </table>
       </div>

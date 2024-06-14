@@ -12,7 +12,7 @@ $username = $data ? ($data["user"] ? $data["user"] : false) : false;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>P-Shop<?= empty($data['title']) ? "" : " | " . $data['title']; ?></title>
+  <title>Bedul<?= empty($data['title']) ? "" : " | " . $data['title']; ?></title>
 
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap.css">
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap.min.css">
@@ -24,7 +24,7 @@ $username = $data ? ($data["user"] ? $data["user"] : false) : false;
 
   <nav class="navbar navbar-expand-lg bg-primary px-5">
     <div class="container-fluid">
-      <a class="navbar-brand fs-3 text-white" href="#">Preprocessor Shop</a>
+      <a class="navbar-brand fs-3 text-white" href="<?= BASE_URL; ?>">Beli Aja Dulu!</a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
