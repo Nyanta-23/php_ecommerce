@@ -6,11 +6,10 @@ class User extends Controller
   public function SignUp()
   {
     $this->templatesViews("/Authentication/SignUp");
-
+    
     if ($_POST) {
-
       Redirect::to("/User/SignUp");
-
+      
       if ($this->model($this->modelName)->getAccountByUsername($_POST["username"])) {
         Flasher::setFlash("account_error", "The account with username " . $_POST["username"] . " has used!", "danger");
         exit;
@@ -20,6 +19,7 @@ class User extends Controller
           Flasher::setFlash("account_error", "The password is not match!", "danger");
           exit;
         } else {
+
           $protect = array(
             "id" => htmlspecialchars($_POST['id']),
             "first_name" => htmlspecialchars($_POST['firstName']),
@@ -27,15 +27,22 @@ class User extends Controller
             "username" => htmlspecialchars(strtolower($_POST['username'])),
             "email" => htmlspecialchars($_POST['email']),
             "password" => htmlspecialchars($_POST['password']),
-            "telephone" => htmlspecialchars($_POST['telephone'])
+            "telephone" => htmlspecialchars($_POST['telephone']),
+            "birthdate" => htmlspecialchars($_POST['birth']),
+            "gender" => htmlspecialchars($_POST["gender"])
           );
+
+          var_dump($protect);
+
 
           if ($this->model($this->modelName)->signUp($protect) > 0) {
             Flasher::setAlert("account_created", "Your account has created!", true);
             exit;
           }
+          exit;
         }
       }
+
     }
   }
 

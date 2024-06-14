@@ -8,6 +8,7 @@
 
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap.css">
   <link rel="stylesheet" href="<?= BASE_URL; ?>/css/style.css">
+  <link rel="stylesheet" href="<?= BASE_URL; ?>/css/bootstrap-datepicker.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
@@ -33,8 +34,24 @@
         </div>
       </div>
 
+      <select class="form-select my-1" name="gender">
+        <option selected>Gender:</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+
+      <div class="row g-3 align-items-center">
+        <div class="col-auto">
+          <label for="birth" class="col-form-label">Birth:</label>
+        </div>
+        <div class="col-auto">
+          <input type="date" id="birth" class="form-control" name="birth">
+        </div>
+        </div>
+      </div>
+
       <div class="form-floating my-1">
-        <input type="number" class="form-control" id="telephone" placeholder="telephone" name="telephone" autocomplete="on" required />
+        <input type="number" class="form-control" id="telephone" placeholder="telephone" name="telephone" required />
         <label for="telephone">Telephone:</label>
       </div>
 
@@ -49,16 +66,16 @@
       </div>
 
       <div class="form-floating my-1">
-        <input type="password" class="form-control" id="password" placeholder="Password" name="password" autocomplete="on" required />
+        <input type="password" class="form-control" id="password" placeholder="Password" name="password" required />
         <label for="password">Password:</label>
       </div>
 
       <div class="form-floating my-1">
-        <input type="password" class="form-control" id="confirmPassword" placeholder="ConfirmPassword" name="confirmPassword" autocomplete="on" required />
+        <input type="password" class="form-control" id="confirmPassword" placeholder="ConfirmPassword" name="confirmPassword" required />
         <label for="confirmPassword">Confirm Password:</label>
       </div>
 
-      <?php Flasher::authMessage("account_error") ?>
+      <?= Flasher::authMessage("account_error") ?>
 
       <button id="submit" type="submit" class="btn btn-primary w-100 py-2 mt-4">Sign Up</button>
 
@@ -74,6 +91,7 @@
 
   <script src="<?= BASE_URL; ?>/js/jquery.js"></script>
   <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>
+  <script src="<?= BASE_URL; ?>/js/bootstrap-datepicker.js"></script>
   <script>
     $("#Username").on("input", function(e) {
       e.target.value = e.target.value.toLowerCase();

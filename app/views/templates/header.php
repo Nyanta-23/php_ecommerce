@@ -1,11 +1,8 @@
 <?php
-
-
 $actual_link = (empty($_SERVER['HTTPS']) ? 'http' : 'https') . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 $split_link = explode("/", $actual_link)[5];
 
-
-$username = $data ? ($data["user"] ? $data["user"]["username"] : false) : false;
+$username = $data ? ($data["user"] ? $data["user"] : false) : false;
 
 ?>
 
@@ -76,7 +73,7 @@ $username = $data ? ($data["user"] ? $data["user"]["username"] : false) : false;
                 <?= $username; ?>
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Account</a></li>
+                <li><a class="dropdown-item" href="<?= BASE_URL; ?>/Account">Akun</a></li>
                 <li><a class="dropdown-item" href="#">Keranjang</a></li>
                 <li>
                   <form action="<?= BASE_URL; ?>/User/ModalSignOut" method="post">
@@ -95,5 +92,5 @@ $username = $data ? ($data["user"] ? $data["user"]["username"] : false) : false;
 
   <?= Flasher::alert("logout"); ?>
 
-  <section>
+  <section class="overflow-x-hidden">
     <section id="main" class="ms-4">

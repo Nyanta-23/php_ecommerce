@@ -26,7 +26,7 @@ class Controller
 
   public function header()
   {
-    $data["user"] = isset($_SESSION["user"]) ? $this->model($this->modelUser)->getAccountById($_SESSION["user"]) : "";
+    $data["user"] = isset($_SESSION["user"]) ? $this->model($this->modelUser)->getUsernameById($_SESSION["user"]) : "";
 
     $this->templatesViews("templates/header", $data);
   }

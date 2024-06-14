@@ -1,9 +1,14 @@
 const baseUrl = "http://localhost:8080/php_ecommerce/public";
 
+$('.datepicker').datepicker();
+
 document.addEventListener("DOMContentLoaded", () => {
 
   showModalLogout();
   showToolTipToBeSeller();
+
+
+
 
 });
 
@@ -23,12 +28,9 @@ function showToolTipToBeSeller() {
 
   if (JSON.stringify(tooltipElmSeller) != "null") {
     const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipElmSeller);
-
     tooltipElmSeller.addEventListener("mouseover", () => {
       tooltip.show();
     });
-
     tooltip.hide();
   }
-
 }

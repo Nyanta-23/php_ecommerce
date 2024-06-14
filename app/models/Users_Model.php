@@ -13,7 +13,7 @@ class Users_Model
 
   public function signUp($data)
   {
-    $query = "INSERT INTO $this->table (username, password, first_name, last_name, telephone, email) VALUES (:username, :password, :first_name, :last_name, :telephone, :email)";
+    $query = "INSERT INTO $this->table (username, password, first_name, last_name, telephone, email, gender, birthdate) VALUES (:username, :password, :first_name, :last_name, :telephone, :email, :gender, :birthdate)";
 
     $this->db->query($query);
     $this->db->bind('username', $data['username']);
@@ -22,6 +22,8 @@ class Users_Model
     $this->db->bind('last_name', $data['last_name']);
     $this->db->bind('telephone', $data['telephone']);
     $this->db->bind('email', $data['email']);
+    $this->db->bind('gender', $data['gender']);
+    $this->db->bind('birthdate', $data['birthdate']);
 
     $this->db->execute();
 
@@ -75,9 +77,19 @@ class Users_Model
     }
   }
 
-  public static function getAccountByIdStatic($id)
+  public function getUsernameById($id)
   {
-    $instance = new self();
-    return $instance->getAccountById($id);
+    $query = "SELECT * FROM $this->table WHERE id = :id";
+    $this->db->query($query);
+    $this->db->bind("id", isset($id) ? $id : false);
+
+    $account = $this->db->fetch();
+    $username = $account["username"];
+
+    if ($this->db->rowCount() > 0) {
+      return $username;
+    } else {
+      return false;
+    }
   }
 }
