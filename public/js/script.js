@@ -29,3 +29,17 @@ function showToolTipToBeSeller() {
     tooltip.hide();
   }
 }
+
+function showToolTipToBeSeller() {
+
+  const tooltipElmSeller = document.querySelector('[data-tooltip="buyer"]');
+
+  if (JSON.stringify(tooltipElmSeller) != "null") {
+    const tooltip = bootstrap.Tooltip.getOrCreateInstance(tooltipElmSeller);
+    tooltipElmSeller.addEventListener("mouseover", () => {
+      tooltip.show();
+    });
+    tooltip.hide();
+  }
+}
+

@@ -4,6 +4,8 @@ $split_link = explode("/", $actual_link)[5];
 
 $username = $data ? ($data["user"] ? $data["user"] : false) : false;
 
+$beSeller = BASE_URL . "/Seller/beseller";
+
 ?>
 
 <!DOCTYPE html>
@@ -35,21 +37,21 @@ $username = $data ? ($data["user"] ? $data["user"] : false) : false;
           <li class="border-end border-1 me-2 px-3">
 
             <?= isset($_SESSION["user"]) ? "
-            <button class='btn text-white fs-3 px-4'
+            <a href=" . $beSeller ." class='btn text-white fs-3 px-4'
                   data-tooltip='seller'
                   data-bs-toggle='tooltip' 
                   data-bs-placement='bottom'
                   data-bs-title='Ayo jual barangmu!'>
               <i class='bi bi-shop'></i>
-            </button>"
+            </a>"
               :
-              "<button class='btn text-white fs-3 px-4' 
+              "<a class='btn text-white fs-3 px-4' 
                   data-tooltip='buyer'
                   data-bs-toggle='tooltip' 
                   data-bs-placement='bottom'
                   data-bs-title='Ayo mulai belanja!'>
               <i class='bi bi-cart4'></i>
-            </button>"; ?>
+            </a>"; ?>
           </li>
 
           <?php
@@ -90,7 +92,7 @@ $username = $data ? ($data["user"] ? $data["user"] : false) : false;
     </div>
   </nav>
 
-  <?= Flasher::alert("logout"); ?>
+  <?= Flasher::alertAuth("logout"); ?>
 
   <section class="overflow-x-hidden">
-    <section id="main" class="ms-4">
+    <main id="main" class="ms-4">

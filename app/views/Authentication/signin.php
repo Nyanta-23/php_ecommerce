@@ -18,13 +18,13 @@
       <h1>Welcome Back!</h1>
       <h1 class="h3 mb-3 fw-normal">Please sign in, for continue to the eccomerce</h1>
 
-      <div class="form-floating">
-        <input type="text" class="form-control" id="floatingInput" placeholder="nameexample123" name="username">
+      <div class="form-floating my-1">
+        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name_example123">
         <label for="floatingInput">Username</label>
       </div>
 
-      <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" autocomplete="on" name="password">
+      <div class="form-floating my-1">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="passwprd123">
         <label for="floatingPassword">Password</label>
       </div>
 

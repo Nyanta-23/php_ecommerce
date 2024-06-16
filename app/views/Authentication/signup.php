@@ -87,7 +87,7 @@
     </form>
   </main>
 
-  <?= Flasher::alert("account_created"); ?>
+  <?= Flasher::alertAuth("account_created"); ?>
 
   <script src="<?= BASE_URL; ?>/js/jquery.js"></script>
   <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>

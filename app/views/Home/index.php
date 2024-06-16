@@ -1,7 +1,4 @@
 <div class="wraper-home mt-3">
-
-
-
   <section>
     <div class="px-4 py-5 mt-4 mb-5 text-center border mx-5 shadow rounded-3">
       <h1 class="display-5 fw-bold text-body-emphasis">Beli Aja Dulu!</h1>
