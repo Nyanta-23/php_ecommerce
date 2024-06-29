@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +49,7 @@
         <div class="col-auto">
           <input type="date" id="birth" class="form-control" name="birth">
         </div>
-        </div>
+      </div>
       </div>
 
       <div class="form-floating my-1">
@@ -75,7 +77,7 @@
         <label for="confirmPassword">Confirm Password:</label>
       </div>
 
-      <?= Flasher::authMessage("account_error") ?>
+      <?= Flasher::FlashMessage("account_error") ?>
 
       <button id="submit" type="submit" class="btn btn-primary w-100 py-2 mt-4">Sign Up</button>
 
@@ -87,7 +89,7 @@
     </form>
   </main>
 
-  <?= Flasher::alertAuth("account_created"); ?>
+  <?= Flasher::alert("account_created"); ?>
 
   <script src="<?= BASE_URL; ?>/js/jquery.js"></script>
   <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>
@@ -97,10 +99,7 @@
       e.target.value = e.target.value.toLowerCase();
     });
 
-    const getPost = '<?= $_SERVER['REQUEST_METHOD'] == 'POST'; ?>' ? true : false;
-    const baseUrl = '<?= BASE_URL; ?>';
-
-    const modal = new bootstrap.Modal($("#modal"));
+    const modal = new bootstrap.Modal($(document.getElementsByClassName("modal")[0]));
 
     $(function() {
       modal.show();
@@ -113,6 +112,8 @@
         modal.hide();
       });
     });
+
+
   </script>
 </body>
 

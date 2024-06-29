@@ -19,18 +19,18 @@
       <h1 class="h3 mb-3 fw-normal">Please sign in, for continue to the eccomerce</h1>
 
       <div class="form-floating my-1">
-        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name_example123">
+        <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name_example123" autocomplete="username">
         <label for="floatingInput">Username</label>
       </div>
 
       <div class="form-floating my-1">
-        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="passwprd123">
+        <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="password123" autocomplete="current-password">
         <label for="floatingPassword">Password</label>
       </div>
 
       <div class="row">
         <div class="col mt-3">
-          <?php Flasher::authMessage("error_input") ?>
+          <?= Flasher::FlashMessage("error_input") ?>
         </div>
       </div>
 

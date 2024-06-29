@@ -14,7 +14,7 @@ class Sellers_Model
 
   public function signUpSeller($data)
   {
-    $query = "INSERT INTO $this->mainTable (store_name, address, city_or_regency, province, post_code, user_id) VALUES (:store_name, :address, :city_or_regency, :province, :post_code    , :user_id)";
+    $query = "INSERT INTO $this->mainTable (store_name, address, city_or_regency, province, post_code, user_id) VALUES (:store_name, :address, :city_or_regency, :province, :post_code, :user_id)";
 
     $this->db->query($query);
     $this->db->bind("store_name", $data["store_name"]);

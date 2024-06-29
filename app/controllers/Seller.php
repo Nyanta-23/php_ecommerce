@@ -7,8 +7,16 @@ class Seller extends Controller
     $mainModel = "Sellers_Model",
     $userModel = "Users_Model";
 
+  public function index()
+  {
+    $this->viewSeller("Seller/index");
+  }
+
+
   public function beseller()
   {
+
+    $account = $this->model($this->userModel)->getAccountById($_SESSION["user"]);
 
     if ($_POST) {
       Redirect::to("/Seller/beseller");
@@ -35,10 +43,8 @@ class Seller extends Controller
       }
     }
 
-    $account = $this->model($this->userModel)->getAccountById($_SESSION["user"]);
-
     if ($account["seller"] > 0) {
-      Redirect::to("/Home");
+      Redirect::to("/Seller");
     } else {
       $user = $this->model($this->userModel)->getAccountById($_SESSION["user"]);
       $userData = array(
@@ -50,10 +56,5 @@ class Seller extends Controller
 
       $this->view("Seller/beseller", $data);
     }
-  }
-
-  public function store()
-  {
-    
   }
 }

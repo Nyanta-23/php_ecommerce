@@ -2,7 +2,7 @@
 </section>
 
 <section id="footer">
-  <footer class="align-items-center py-3 my-4 border-top w-100">
+  <footer class="align-items-center py-3  border-top w-100 <?= $_GET == null ? "my-4" : (strtolower(explode("/", $_GET["url"])[0]) == "seller" ? "my-0" : false); ?>">
     <div class="container">
       <p class="mb-0 text-muted text-center">© 2024 All right reserved by Nyanta</p>
     </div>

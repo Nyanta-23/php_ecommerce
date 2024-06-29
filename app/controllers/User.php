@@ -6,10 +6,10 @@ class User extends Controller
   public function SignUp()
   {
     $this->templatesViews("/Authentication/SignUp");
-    
+
     if ($_POST) {
       Redirect::to("/User/SignUp");
-      
+
       if ($this->model($this->modelName)->getAccountByUsername($_POST["username"])) {
         Flasher::setFlash("account_error", "The account with username " . $_POST["username"] . " has used!", "danger");
         exit;
@@ -32,17 +32,13 @@ class User extends Controller
             "gender" => htmlspecialchars($_POST["gender"])
           );
 
-          var_dump($protect);
-
-
-          if ($this->model($this->modelName)->signUp($protect) > 0) {
-            Flasher::setAlert("account_created", "Your account has created!", true);
-            exit;
-          }
+          Flasher::setPopUp("account_created", "Your account has created!", "Go to SignIn", "Congratulations!");
+          // if ($this->model($this->modelName)->signUp($protect) > 0) {
+          //   exit;
+          // }
           exit;
         }
       }
-
     }
   }
 
@@ -101,16 +97,14 @@ class User extends Controller
   public function ModalSignOut()
   {
     if (isset($_POST["tosignout"])) {
-      Flasher::setAlert("logout", "Are you sure want to logout?");
       Redirect::to("/Home");
+      Flasher::setPopUp("signout", "Are you sure want to logout?", "Logout", "Are you sure?", "/User/SignOut");
     }
   }
 
   public function SignOut()
   {
-    if (isset($_POST["signout"])) {
-      Session::stopSession();
-      Redirect::to("/Home");
-    }
+    Session::stopSession();
+    Redirect::to("/Home");
   }
 }

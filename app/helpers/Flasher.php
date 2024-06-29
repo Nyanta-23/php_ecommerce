@@ -11,16 +11,7 @@ class Flasher
     ];
   }
 
-  public static function setAlert($session, $msg, $isLogin = false, $id = "")
-  {
-    $_SESSION[$session] = [
-      "message" => $msg,
-      "isLogin" => $isLogin,
-      "id" => $id
-    ];
-  }
-
-  public static function authMessage($session)
+  public static function FlashMessage($session)
   {
     if (isset($_SESSION[$session])) {
       echo '<div class="text-' . $_SESSION[$session]['type'] . '">' . $_SESSION[$session]['message'] . '</div>';
@@ -29,70 +20,74 @@ class Flasher
     }
   }
 
-  public static function alertSeller($session)
+  public static function setPopUp($session, $msg, $textaction, $head = "", $redirect = "")
+  {
+    $_SESSION[$session] = [
+      "message" => $msg,
+      "header" => $head,
+      "action" => $textaction,
+      "redirect" => $redirect
+    ];
+  }
+
+  public static function alert($session)
   {
     if (isset($_SESSION[$session])) {
-      $html = '<div class="modal" id="modal" tabindex="-1" style="transition: width 2s ease-in 1s;">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Alert!</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>' . $_SESSION[$session]['message'] . '</p>
-          </div>
 
-          <div class="modal-footer text-center d-flex justify-content-center">
-              <a href="" class="btn btn-primary blue-btn" data-bs-dismiss="modal">Go To Market</a>
-          </div>
-        </div>
-      </div>
-    </div>';
+      $link = BASE_URL . "/" . $_SESSION[$session]["redirect"];
+      $header = $_SESSION[$session]['header'];
+      $message = $_SESSION[$session]['message'];
+      $action = $_SESSION[$session]['action'];
 
-      echo $html;
+      echo '<div class="modal" tabindex="-1" id="alert">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">' . $header . '</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>' . $message . '</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button onclick="return window.location.href=\'' . $link . '\'" type="button" class="btn btn-primary mx-auto">' . $action  . '</button>
+                  </div>
+                </div>
+              </div>
+            </div>';
 
       unset($_SESSION[$session]);
     }
   }
 
-  public static function alertAuth($session)
+  public static function confirm($session)
   {
-
     if (isset($_SESSION[$session])) {
 
-      $button = $_SESSION[$session]["isLogin"] == true ? '<button type="button" class="btn btn-primary blue-btn" data-bs-dismiss="modal">Go To SignIn?</button>' : '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-      <form action="' . BASE_URL . '/User/SignOut" method="post">
-        <input type="hidden" name="signout"/>
-        <button type="submit" class="btn btn-danger">Confirm</button>
-      </form>
-        ';
+      $link = BASE_URL . "/" . $_SESSION[$session]["redirect"];
+      $header = $_SESSION[$session]['header'];
+      $message = $_SESSION[$session]['message'];
+      $action = $_SESSION[$session]['action'];
 
-      $alignContent = $_SESSION[$session]["isLogin"] ? "justify-content-center" : "justify-content-start";
-
-      $html = '<div class="modal" id="modal" tabindex="-1" style="transition: width 2s ease-in 1s;">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Alert!</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <p>' . $_SESSION[$session]['message'] . '</p>
-          </div>
-
-          <div class="modal-footer text-center d-flex' . $alignContent . '">
-          ' .
-        $button
-        .
-        '
-          </div>
-          
-        </div>
-      </div>
-    </div>';
-
-      echo $html;
+      echo '<div class="modal" tabindex="-1" id="confirm">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">' . $header . '</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p>' . $message . '</p>
+                  </div>
+                  <div class="modal-footer">
+                    <div class="align-self-end">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button onclick="window.location.href=\'' . $link . '\'" type="button" class="btn btn-primary mx-auto">' . $action . '</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>';
 
       unset($_SESSION[$session]);
     }

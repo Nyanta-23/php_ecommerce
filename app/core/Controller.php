@@ -6,6 +6,13 @@ class Controller
   private
     $modelUser = "Users_Model";
 
+
+  public function model($model)
+  {
+    require_once "../app/models/$model.php";
+    return new $model;
+  }
+
   public function templatesViews($view, $data = [])
   {
     require_once "../app/views/$view.php";
@@ -18,21 +25,34 @@ class Controller
     $this->footer();
   }
 
-  public function model($model)
+  public function viewSeller($view, $data = [])
   {
-    require_once "../app/models/$model.php";
-    return new $model;
+    $this->header();
+    $this->headerSeller();
+    $this->templatesViews($view, $data);
+    $this->footerSeller();
+    $this->footer();
   }
 
-  public function header()
+  private function header()
   {
     $data["user"] = isset($_SESSION["user"]) ? $this->model($this->modelUser)->getUsernameById($_SESSION["user"]) : "";
 
     $this->templatesViews("templates/header", $data);
   }
 
-  public function footer()
+  private function footer()
   {
     $this->templatesViews("templates/footer");
+  }
+
+  private function headerSeller()
+  {
+    $this->templatesViews("Seller/template_store/header_seller");
+  }
+
+  private function footerSeller()
+  {
+    $this->templatesViews("Seller/template_store/footer_seller");
   }
 }

@@ -79,8 +79,7 @@ $beSeller = BASE_URL . "/Seller/beseller";
                 <li><a class="dropdown-item" href="#">Keranjang</a></li>
                 <li>
                   <form action="<?= BASE_URL; ?>/User/ModalSignOut" method="post">
-                    <input type="hidden" name="tosignout" />
-                    <button type="submit" class="dropdown-item hover-header" href="#">Keluar</button>
+                    <button type="submit" name="tosignout" class="dropdown-item hover-header" href="#">Keluar</button>
                   </form>
                 </li>
               </ul>
@@ -92,7 +91,7 @@ $beSeller = BASE_URL . "/Seller/beseller";
     </div>
   </nav>
 
-  <?= Flasher::alertAuth("logout"); ?>
+  <?= Flasher::confirm("signout"); ?>
 
   <section class="overflow-x-hidden">
-    <main id="main" class="ms-4">
+    <main id="main">
