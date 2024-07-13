@@ -92,4 +92,8 @@ class Flasher
       unset($_SESSION[$session]);
     }
   }
+
+  public static function test(){
+      echo "<h1 class=\"text-xl\">Kontooooooooool</h1>";
+  }
 }

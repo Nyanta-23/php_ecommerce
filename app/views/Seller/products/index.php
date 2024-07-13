@@ -1,3 +1,8 @@
+<?php
+$i = 1;
+$pathImg = BASE_URL . "/images/dynamic/img_products/";
+?>
+
 <section class="container-fluid">
 
   <div class="row mb-2">
@@ -17,8 +22,8 @@
           <div class="d-flex justify-content-between">
 
             <h3 class="card-title">Data Products</h3>
-            
-            <a href="<?= BASE_URL?>/Products/addProduct" class="btn btn-primary">Tambah Product</a>
+
+            <a href="<?= BASE_URL ?>/Products/addProduct" class="btn btn-primary">Tambah Product</a>
           </div>
         </div>
 
@@ -29,35 +34,38 @@
 
                 <thead>
                   <tr>
+                    <th>No</th>
                     <th>Nama Product</th>
                     <th>Jumlah</th>
                     <th>Harga</th>
                     <th>Kategori</th>
                     <th>Deskripsi</th>
-                    <th>Gambar</th>
-                    <th>Aksi</th>
+                    <th class="text-center">Gambar</th>
+                    <th class="text-center">Aksi</th>
                   </tr>
                 </thead>
 
                 <tbody>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
-                  <tr>
-                    <td>Gecko</td>
-                    <td>Firefox 1.0</td>
-                    <td>Win 98+ / OSX.2+</td>
-                    <td>1.7</td>
-                    <td>A</td>
-                    <td>A</td>
-                    <td>A</td>
-                  </tr>
+                  <?php
+                  if ($data["products"] > 0) :
+                    foreach ($data["products"] as $data) : ?>
+                      <tr>
+                        <td><?= $i++; ?></td>
+                        <td><?= $data["name_product"]; ?></td>
+                        <td><?= $data["quantity"]; ?></td>
+                        <td><?= $data["price"]; ?></td>
+                        <td><?= $data["name_category"]; ?></td>
+                        <td style="width: 300px;"><?= $data["description"]; ?></td>
+                        <td class="text-center"><img width="250px" src="<?= $pathImg; ?><?= $data["product_img"]; ?>" alt="<?= $data["name_product"]; ?>.<?= $data["product_img"]; ?>"></td>
+                        <td class="text-center my-auto">
+                          <a href="<?= BASE_URL; ?>/products/editProduct/<?= $data['id']; ?>" class="btn btn-success">Ubah</a>
+                          <a href="<?= BASE_URL; ?>/products/deleteProduct/<?= $data['id']; ?>" class="btn btn-danger" onclick="return confirm('yakin?');">Hapus</a>
+                        </td>
+                      </tr>
+                  <?php
+                    endforeach;
+                  endif;
+                  ?>
                 </tbody>
               </table>
             </div>

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +77,7 @@
 
       <?= Flasher::FlashMessage("account_error") ?>
 
-      <button id="submit" type="submit" class="btn btn-primary w-100 py-2 mt-4">Sign Up</button>
+      <button id="submit" type="submit" name="submit" class="btn btn-primary w-100 py-2 mt-4 rounded">Sign Up</button>
 
       <div class="text-center mt-3">
         <span>If you have account go to <a href="<?= BASE_URL; ?>/User/SignIn">SignIn</a></span>
@@ -93,7 +91,6 @@
 
   <script src="<?= BASE_URL; ?>/js/jquery.js"></script>
   <script src="<?= BASE_URL; ?>/js/bootstrap.js"></script>
-  <script src="<?= BASE_URL; ?>/js/bootstrap-datepicker.js"></script>
   <script>
     $("#Username").on("input", function(e) {
       e.target.value = e.target.value.toLowerCase();

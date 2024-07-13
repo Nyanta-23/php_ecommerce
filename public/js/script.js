@@ -7,6 +7,7 @@ const tooltipData = ["buyer", "seller", "orders", "products", "dashboard"];
 document.addEventListener("DOMContentLoaded", () => {
 
   showConfirm();
+  showAlert();
 
   tooltipData.forEach(e => (showToolTip(e)));
 
@@ -36,6 +37,7 @@ function showConfirm() {
 }
 function showAlert() {
   const modal = document.getElementById("alert");
+  // console.log(modal);
   if (JSON.stringify(modal) != "null") {
     const modal = new bootstrap.Modal("#alert", {
       backdrop: true

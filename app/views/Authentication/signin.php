@@ -40,7 +40,7 @@
           Remember me
         </label>
       </div>
-      <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+      <button class="btn btn-primary w-100 py-2" name="submit" type="submit">Sign in</button>
       <div class="text-center mt-3">
         <span>Dont have account? <a href="<?= BASE_URL; ?>/User/SignUp">SignUp</a></span>
       </div>

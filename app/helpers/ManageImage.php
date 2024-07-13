@@ -24,9 +24,15 @@ class ManageImage
 
   public static function SaveImageTo($tmp_name, $name_and_extension)
   {
-    $dir = "./gambar/";
-
+    $dir = "../public/images/dynamic/";
+    
     return move_uploaded_file($tmp_name, $dir . $name_and_extension);
+  }
+  
+  public static function DeleteImageFrom($pathFolder, $name_and_extension) {
+    $dir = "../public/images/dynamic/";
+
+    if(file_exists("$dir$pathFolder$name_and_extension")) return unlink($dir . $pathFolder . $name_and_extension);
   }
 
 }

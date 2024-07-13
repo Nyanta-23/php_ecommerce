@@ -7,7 +7,7 @@ class User extends Controller
   {
     $this->templatesViews("/Authentication/SignUp");
 
-    if ($_POST) {
+    if (isset($_POST["submit"])) {
       Redirect::to("/User/SignUp");
 
       if ($this->model($this->modelName)->getAccountByUsername($_POST["username"])) {
@@ -33,9 +33,11 @@ class User extends Controller
           );
 
           Flasher::setPopUp("account_created", "Your account has created!", "Go to SignIn", "Congratulations!");
-          // if ($this->model($this->modelName)->signUp($protect) > 0) {
-          //   exit;
-          // }
+
+          if ($this->model($this->modelName)->signUp($protect) > 0) {
+            Flasher::setPopUp("account_created", "Your account has created!", "Go to SignIn", "Congratulations!");
+            exit;
+          }
           exit;
         }
       }
@@ -62,7 +64,7 @@ class User extends Controller
 
     $this->templatesViews("/Authentication/SignIn");
 
-    if ($_POST) {
+    if (isset($_POST["submit"])) {
 
       Redirect::to("/User/SignIn");
 
