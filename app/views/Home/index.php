@@ -1,3 +1,9 @@
+<?php
+$products = $data["products"];
+$pathImg = BASE_URL . "/images/dynamic/img_products";
+
+?>
+
 <div class="wraper-home mt-3">
   <section>
     <div class="px-4 py-5 mt-4 mb-5 text-center border mx-5 shadow rounded-3">
@@ -26,51 +32,26 @@
       </div>
     </div>
     <div class="row mt-2">
-      <div class="col-12 d-flex gap-3 flex-wrap" style="margin-left: 2px !important;">
+      <div class="col-12 d-flex column-gap-3 row-gap-0 flex-wrap" style="margin-left: 2px !important;">
 
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-          
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-        <div class="card" style="width: 16.68rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
+        <?php
+        if ($products > 0) :
+          foreach ($products as $data) :
+        ?>
+            <div class="card h-25" style="width: 16.68rem; height: 30% !important;">
+              <img src="<?= $pathImg . "/" . $data["product_img"]; ?>" class="card-img-top h-50" />
+              <div class="card-body mt-3">
+                <h5 class="card-title"><?= $data["name_product"]; ?></h5>
+                <h6 class="card-text">Rp.<?= number_format($data["price"], 0, '', '.'); ?></h6>
+              </div>
+              <div>
+                <a href="" class="btn btn-primary w-100 rounded-0 rounded-bottom-1">Beli Sekarang</a>
+              </div>
+            </div>
+        <?php
+          endforeach;
+        endif;
+        ?>
 
       </div>
     </div>
