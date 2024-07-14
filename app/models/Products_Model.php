@@ -96,6 +96,23 @@ class Products_Model
     return $this->db->rowCount() > 0 ? $products : false;
   }
 
+  public function getAllProductsByUserIdLimit($user_id, $firstData, $amountDataPerPage){
+    $query = "SELECT $this->table.*, $this->category.name_category 
+    FROM $this->table
+    LEFT JOIN $this->category
+    ON $this->table.category_id = $this->category.id
+    WHERE user_id = :user_id
+    LIMIT $firstData, $amountDataPerPage
+    ";
+
+    $this->db->query($query);
+    $this->db->bind("user_id", $user_id);
+
+    $products = $this->db->fetchAll();
+
+    return $this->db->rowCount() > 0 ? $products : false;
+  }
+
   public function getAllCategories()
   {
     $query = "SELECT * FROM $this->category";

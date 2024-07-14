@@ -2,7 +2,6 @@
 
 class Products extends Controller
 {
-
   private $model = "Products_Model";
 
   private
@@ -10,8 +9,18 @@ class Products extends Controller
 
   public function index()
   {
+    $activePage = is_numeric(array_slice(explode("/", $_SERVER["REQUEST_URI"]), -1)[0]) ? (int) array_slice(explode("/", $_SERVER["REQUEST_URI"]), -1)[0] : 1;
 
-    $data["products"] = $this->model($this->model)->getAllProductsByUserId(strval($_SESSION["user"]));
+    $dataAmountPerPage = 9;
+    $dataAmount = count($this->model($this->model)->getAllProductsByUserId(strval($_SESSION["user"])));
+
+    $amountPage = ceil($dataAmount / $dataAmountPerPage);
+    $firstDataEveryOnPage = ($dataAmountPerPage * $activePage) - $dataAmountPerPage;
+
+    $data["products"] = $this->model($this->model)->getAllProductsByUserIdLimit(strval($_SESSION["user"]), $firstDataEveryOnPage, $dataAmountPerPage);
+
+    $data["amount_page"] = $amountPage;
+    $data["active_page"] = $activePage;
 
     $this->viewSeller("Seller/products/index", $data);
   }
@@ -69,10 +78,10 @@ class Products extends Controller
 
     if (isset($_POST["submit"])) {
 
-      $data = array(...$_POST, "user_id" => $user_id);  
+      $data = array(...$_POST, "user_id" => $user_id);
       $image_post = $_FILES["product_image"];
 
-      $pathRedirect = "/Products/editProduct/$id"; 
+      $pathRedirect = "/Products/editProduct/$id";
 
       Redirect::to($pathRedirect);
 
@@ -85,7 +94,7 @@ class Products extends Controller
           "product_img" => $newNameImage,
           "user_id" => $user_id
         );
-        
+
         ManageImage::DeleteImageFrom($this->pathUpload, $getImage);
 
         if ($this->model($this->model)->editProduct($data) > 0) {

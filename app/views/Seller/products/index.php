@@ -1,6 +1,11 @@
 <?php
 $i = 1;
 $pathImg = BASE_URL . "/images/dynamic/img_products/";
+
+$products = $data["products"];
+
+$amount_page = $data["amount_page"];
+$active_page = $data["active_page"];
 ?>
 
 <section class="container-fluid">
@@ -45,18 +50,21 @@ $pathImg = BASE_URL . "/images/dynamic/img_products/";
                   </tr>
                 </thead>
 
+
                 <tbody>
+
                   <?php
-                  if ($data["products"] > 0) :
-                    foreach ($data["products"] as $data) : ?>
-                      <tr>
+                  if ($products > 0) :
+                    foreach ($products as $data) :
+                  ?>
+                      <tr class="text-center align-self-center">
                         <td><?= $i++; ?></td>
                         <td><?= $data["name_product"]; ?></td>
                         <td><?= $data["quantity"]; ?></td>
                         <td><?= $data["price"]; ?></td>
                         <td><?= $data["name_category"]; ?></td>
                         <td style="width: 300px;"><?= $data["description"]; ?></td>
-                        <td class="text-center"><img width="250px" src="<?= $pathImg; ?><?= $data["product_img"]; ?>" alt="<?= $data["name_product"]; ?>.<?= $data["product_img"]; ?>"></td>
+                        <td class="text-center"><img width="190px" height="200px" src="<?= $pathImg; ?><?= $data["product_img"]; ?>" alt="<?= $data["name_product"]; ?>.<?= $data["product_img"]; ?>"></td>
                         <td class="text-center my-auto">
                           <a href="<?= BASE_URL; ?>/products/editProduct/<?= $data['id']; ?>" class="btn btn-success">Ubah</a>
                           <a href="<?= BASE_URL; ?>/products/deleteProduct/<?= $data['id']; ?>" class="btn btn-danger" onclick="return confirm('yakin?');">Hapus</a>
@@ -71,34 +79,25 @@ $pathImg = BASE_URL . "/images/dynamic/img_products/";
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-sm-12 col-md-5">
-              <div class="dataTables_info" id="example2_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
-            </div>
+          <div class="row d-flex justify-content-center">
             <div class="col-sm-12 col-md-7">
               <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
-                <ul class="pagination">
-                  <li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                  <li class="paginate_button page-item active">
-                    <a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a>
+                <ul class="pagination justify-content-center">
+
+                  <li class="paginate_button page-item previous <?= ($active_page - 1 < 1) ? "d-none" : false; ?>">
+                    <a href="<?= $active_page - 1; ?>" class="page-link">Previous</a>
                   </li>
-                  <li class="paginate_button page-item ">
-                    <a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                  </li>
-                  <li class="paginate_button page-item ">
-                    <a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a>
-                  </li>
-                  <li class="paginate_button page-item ">
-                    <a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link">4</a>
-                  </li>
-                  <li class="paginate_button page-item ">
-                    <a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">5</a>
-                  </li>
-                  <li class="paginate_button page-item ">
-                    <a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">6</a>
-                  </li>
-                  <li class="paginate_button page-item next" id="example2_next">
-                    <a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
+
+                  <?php
+                  for ($i = 0; $i < $amount_page; $i++) :
+                  ?>
+                    <li class="paginate_button page-item <?= ($active_page == $i + 1) ? "active" : false; ?>">
+                      <a href="<?= $i + 1; ?>" class="page-link"><?= $i + 1; ?></a>
+                    </li>
+                  <?php endfor; ?>
+
+                  <li class="paginate_button page-item next <?= ($active_page + 1 > $amount_page) ? "d-none" : false; ?>">
+                    <a href="<?= $active_page + 1; ?>" class="page-link">Next</a>
                   </li>
                 </ul>
               </div>
