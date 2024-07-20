@@ -42,10 +42,10 @@ $pathImg = BASE_URL . "/images/dynamic/img_products";
               <img src="<?= $pathImg . "/" . $data["product_img"]; ?>" class="card-img-top h-50" />
               <div class="card-body mt-3">
                 <h5 class="card-title"><?= $data["name_product"]; ?></h5>
-                <h6 class="card-text">Rp.<?= number_format($data["price"], 0, '', '.'); ?></h6>
+                <h6 class="card-text">Rp.<?= number_format($data["price"], 0, '', '.'); ?>,00</h6>
               </div>
               <div>
-                <a href="" class="btn btn-primary w-100 rounded-0 rounded-bottom-1">Beli Sekarang</a>
+                <a href="Home/detailproduct/<?= $data["id"]; ?>" class="btn btn-primary w-100 rounded-0 rounded-bottom-1">Beli Sekarang</a>
               </div>
             </div>
         <?php

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   showConfirm();
   showAlert();
+  changePriceWithQuantity();
 
   tooltipData.forEach(e => (showToolTip(e)));
 
@@ -80,5 +81,30 @@ function highlightImage() {
 
   }
 
+}
+
+function changePriceWithQuantity() {
+  const amountSelect = document.getElementById("inputQuantity");
+  const controllerValue = document.getElementsByClassName("controller-value");
+  const price = document.getElementById("price");
+  const priceNum = parseInt(price.innerText.split(',')[0].split('Rp.')[1].split('.').join(''));
+
+  const updatePrice = () => {
+    const newPrice = priceNum * parseInt(amountSelect.value);
+    price.innerText = 'Rp.' + newPrice.toLocaleString('id-ID') + ',00';
+  }
+
+  controllerValue[0].addEventListener("click", () => {
+    if (parseInt(amountSelect.value) > 1) {
+      amountSelect.value = parseInt(amountSelect.value) - 1;
+      updatePrice();
+    };
+  });
+  controllerValue[1].addEventListener("click", () => {
+    amountSelect.value = parseInt(amountSelect.value) + 1
+    updatePrice();
+  });
+
+  updatePrice();
 }
 

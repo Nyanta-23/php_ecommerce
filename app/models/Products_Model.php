@@ -154,4 +154,20 @@ class Products_Model
 
     return $this->db->rowCount() > 0 ? $getProduct : false;
   }
+
+  public function getProductById($id){
+    $query = "SELECT $this->table.*, $this->category.name_category 
+    FROM $this->table 
+    LEFT JOIN $this->category
+    ON $this->table.category_id = $this->category.id
+    WHERE $this->table.id = :id";
+
+    $this->db->query($query);
+    $this->db->bind("id", $id);
+
+    $getProduct = $this->db->fetch();
+
+    return $this->db->rowCount() > 0 ? $getProduct : false;
+  }
+  
 }
